@@ -84,6 +84,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 description.classList.contains('active') ? close(target, description) : open(target, description);
             }
         });
+
+        document.body.addEventListener('click', e => {
+            const target = e.target;
+            if (!target.closest('.characteristics__list')) {
+                closeAllDrops();
+            }
+        })
     };
 
 
