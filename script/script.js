@@ -93,7 +93,41 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     };
 
+    const modal = () => {
+        const cardDetailsButtonBuy = document.querySelector('.card-details__button_buy');
+        const cardDetailsButtonDelivery = document.querySelector('.card-details__button_delivery');
+        const modal = document.querySelector('.modal');
+
+        const openModal = () => {
+            modal.classList.add('open');
+            document.addEventListener('keydown', escapeHandler);
+        };
+        const closeModal = () => {
+            modal.classList.remove('open');
+            document.removeEventListener('keydown', escapeHandler);
+        };
+
+         const escapeHandler = e => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        };
+
+        modal.addEventListener('click', (e) => {
+            const target = e.target;
+            if (target.classList.contains('modal__close') || target === modal ) {
+                closeModal();
+            }
+        });
+
+        cardDetailsButtonBuy.addEventListener('click', openModal);
+
+        cardDetailsButtonDelivery.addEventListener('click', openModal);
+
+    }
+
 
     tabs();
     accordion();
+    modal();
 });
